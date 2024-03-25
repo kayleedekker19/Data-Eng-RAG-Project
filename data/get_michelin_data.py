@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import csv
 import time
+import re
 
 # Create a ChromeOptions object and add the headless argument
 chrome_options = Options()
@@ -40,7 +41,11 @@ for url in urls:
     for div in restaurant_divs:
         href = div.get_attribute('href')
         if href and 'restaurant' in href:
-            restaurant_name = href.split('/')[-1].replace('-', ' ').title()  # Format the name
+            restaurant_name = href.split('/')[-1].replace('-', ' ').title()
+            if restaurant_name.endswith(" S"):
+                restaurant_name = restaurant_name[:-2] + "'s"
+
+            restaurant_name = re.sub(r'\d{5,}', '', restaurant_name).strip()
             restaurants.append(restaurant_name)
 
 driver.quit()
