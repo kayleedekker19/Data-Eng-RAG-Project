@@ -5,8 +5,8 @@ import subprocess
 import os
 from datetime import datetime
 from google.cloud import aiplatform
-from kfp.v2 import compiler
-from kfp.v2.dsl import component, InputPath, OutputPath, pipeline
+from kfp import compiler
+from kfp.dsl import component, InputPath, OutputPath, pipeline
 import kfp.dsl as dsl
 import json
 
@@ -147,15 +147,21 @@ def process_articles_component(
 
     # Initialize OpenAI and LangChain components securely
     try:
-        model = ChatOpenAI(api_key=openai_api_key, model="gpt-3.5-turbo", temperature=0)
+        model = ChatOpenAI(api_key=openai_api_key, model="gpt-4", temperature=0)
     except Exception as e:
         logging.error(f"Error initializing ChatOpenAI: {e}")
         raise
 
     prompt_template = """
-    Please help identify all buyer-supplier relationships present in the provided text.
-    The primary objective of this project is to pinpoint entities within the restaurant industry for NER purposes, and to delineate supply chains.
+    Please help identify all buyer-supplier relationships present in the provided text. 
+    The primary objective of this project is to pinpoint entities within the restaurant industry for NER purposes, and to delineate supply chains. 
     Extract instances where one organization provides goods or services to another, requiring the naming of both parties involved.
+    Important Instructions 
+    1. Do not add the url and article text to the JSON output, but rather leave as an empty string like so "".
+    2. Do not add a buyer-supplier relationship unless specific names of buyer and supplier organisations can be found. 
+       This means examples like "Customers", "Restaurants", "Michelin Guide" do not count and should be excluded. 
+    3. Each buyer-supplier relationship should only include 1 buyer and 1 supplier. 
+
 
     << FORMATTING >>
     {format_instructions}
@@ -168,8 +174,8 @@ def process_articles_component(
 
     JSON
     {{
-        "url": "input URL here",
-        "text": "input text here",
+        "url": "leave as empty string",
+        "text": "leave as empty string",
         "relationships": [
             {{
                 "supplier": "Supplier Name",
@@ -200,17 +206,26 @@ def process_articles_component(
         raise
 
     processed_texts = []
+
     for article in articles:
         try:
             processed_text = chain.invoke({"url_text": article["text"]})
-            processed_texts.append(processed_text)
+
+            relationships_dicts = [relationship.dict() for relationship in processed_text.relationships]
+
+            article_data = {
+                "url": article["url"],
+                "text": article["text"],
+                "relationships": relationships_dicts
+            }
+            processed_texts.append(article_data)
+
         except Exception as e:
             logging.warning(f"Error processing article {article['url']}: {e}")
             continue
 
     try:
-        processed_texts_dicts = [text.dict() for text in processed_texts]
-        processed_texts_json = json.dumps(processed_texts_dicts, indent=2)
+        processed_texts_json = json.dumps(processed_texts, indent=2)
         with open(output_json_path, 'w') as f:
             f.write(processed_texts_json)
         logging.info("Successfully processed articles and saved output.")
