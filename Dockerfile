@@ -1,11 +1,8 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-slim
+#FROM python:3.8-slim
 
-# Install Google Cloud SDK
-RUN apt-get update && apt-get install -y curl gnupg && \
-    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
-    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
-    apt-get update && apt-get install -y google-cloud-sdk
+# Use Google Cloud SDK official Docker image as a parent image
+FROM gcr.io/google.com/cloudsdktool/cloud-sdk:latest
 
 # Set the working directory in the container
 WORKDIR /app
