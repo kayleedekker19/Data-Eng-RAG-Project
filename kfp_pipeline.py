@@ -161,6 +161,7 @@ def process_articles_component(
     1. Do not add the url and article text to the JSON output, but rather leave as an empty string like so "".
     2. Do not add a buyer-supplier relationship unless specific names of buyer and supplier organisations can be found. 
        This means examples like "Customers", "Restaurants", "Michelin Guide" do not count and should be excluded. 
+       You can leave the relationships key empty like this - "relationships": []
     3. Each buyer-supplier relationship should only include 1 buyer and 1 supplier. 
 
 
