@@ -5,12 +5,14 @@ from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 from google.cloud import storage
 import argparse
+from openai import OpenAI
 
 # Step 1: Load environment variables
 load_dotenv()
 pinecone_api_key = os.getenv("PINECONE_KEY")
 openai_api_key = os.getenv("OPENAI_API_KEY")
 index_name = os.getenv("PINECONE_INDEX_NAME")
+openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Google Cloud Storage Configurations
 PROJECT_ID = os.getenv("PROJECT_ID")
@@ -42,23 +44,34 @@ def main(gcs_file_path):
     # Read lines from GCS
     lines = read_text_from_gcs(BUCKET_NAME, gcs_file_path)
 
+    MODEL = "text-embedding-ada-002"
+
     # Step 4: Generate embeddings and import into Pinecone
     for idx, line in enumerate(lines):
         print(f"Processing line {idx + 1}/{len(lines)}")
 
-        # Generate embedding using OpenAIEmbeddings
-        embedding = embed_model.embed_query(line.strip())
+        # Generate embedding using OpenAI
+        response = openai_client.embeddings.create(
+            input=[line.strip()],
+            model=MODEL
+        )
+
+        embeddings = [item.embedding for item in response.data]
+
+        vector_id = str(idx)
+        embedding = embeddings[0]
 
         # Prepare data for insertion into Pinecone
-        vector_id = str(idx)  # Using line index as a unique identifier
-        data = [(vector_id, embedding.tolist(), {"text": line.strip()})]
+        data = {
+            "id": vector_id,
+            "values": embedding,
+            "metadata": {"text": line.strip()}
+        }
 
         # Insert the data into Pinecone
-        index.upsert(vectors=data)
+        index.upsert(vectors=[data])
         print(f"Inserted line {idx + 1} into Pinecone index.")
 
-    print("All lines processed and inserted into Pinecone.")
-    # pc.close()  # Close Pinecone connection
 
 
 if __name__ == "__main__":
