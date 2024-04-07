@@ -270,7 +270,16 @@ compiler.Compiler().compile(
 
 # Move compiled pipeline files to GCS Bucket
 # Use subprocess to execute gsutil command
-subprocess.run(["gsutil", "cp", f"{DIR}/{NOTEBOOK}.yaml", f"{URI}/{TIMESTAMP}/kfp/"], check=True)
+# Construct an environment with only the variables needed
+env = {
+    'GOOGLE_APPLICATION_CREDENTIALS': os.getenv('GOOGLE_APPLICATION_CREDENTIALS'),
+    'PROJECT_ID': os.getenv('PROJECT_ID'),
+    'BUCKET': os.getenv('BUCKET_NAME'),
+}
+
+subprocess.run(["gsutil", "cp", f"{DIR}/{NOTEBOOK}.yaml", f"{URI}/{TIMESTAMP}/kfp/"], env=env, check=True)
+
+# subprocess.run(["gsutil", "cp", f"{DIR}/{NOTEBOOK}.yaml", f"{URI}/{TIMESTAMP}/kfp/"], check=True)
 
 ## Create Vertex AI Pipeline Job
 # Setting variable names
