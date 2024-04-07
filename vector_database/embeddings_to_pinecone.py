@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 from google.cloud import storage
+import argparse
 
 # Step 1: Load environment variables
 load_dotenv()
@@ -28,7 +29,7 @@ print(index.describe_index_stats())
 print("Successfully connected to the index")
 
 
-# Step 4: Function to read data from Google Cloud Storage
+# Step 3: Function to read data from Google Cloud Storage
 def read_text_from_gcs(bucket_name, file_path):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
@@ -37,14 +38,11 @@ def read_text_from_gcs(bucket_name, file_path):
     return text_data.splitlines()
 
 
-def main():
-    # File path in Google Cloud Storage
-    gcs_file_path = "vector_database_resources/textual_representations/neo4j_textual_representations.txt"
-
+def main(gcs_file_path):
     # Read lines from GCS
     lines = read_text_from_gcs(BUCKET_NAME, gcs_file_path)
 
-    # Step 5: Generate embeddings and import into Pinecone
+    # Step 4: Generate embeddings and import into Pinecone
     for idx, line in enumerate(lines):
         print(f"Processing line {idx + 1}/{len(lines)}")
 
@@ -53,15 +51,21 @@ def main():
 
         # Prepare data for insertion into Pinecone
         vector_id = str(idx)  # Using line index as a unique identifier
-        data = [(vector_id, embedding.tolist())]  # Convert numpy array to list for Pinecone
+        data = [(vector_id, embedding.tolist(), {"text": line.strip()})]
 
         # Insert the data into Pinecone
         index.upsert(vectors=data)
         print(f"Inserted line {idx + 1} into Pinecone index.")
 
     print("All lines processed and inserted into Pinecone.")
-    pc.close()  # Close Pinecone connection
+    # pc.close()  # Close Pinecone connection
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Import data into Pinecone vector database from GCS.")
+    parser.add_argument('input_file_name', type=str, help="The GCS path to the input text file")
+    args = parser.parse_args()
+
+    # Adjust the path according to where the files are stored within your bucket
+    gcs_file_path = f"vector_database_resources/textual_representations/{args.input_file_name}"
+    main(gcs_file_path)
