@@ -1,0 +1,56 @@
+question,answer,contexts,ground_truths,ground_truth,context_precision,context_recall,faithfulness,answer_relevancy
+What restaurants are supplied by 'Hg Walter'?,"The restaurants supplied by Hg Walter are Muse, Cafe Murano, River Café, Petersham Nurseries, Andrew Edmunds, Company of Cooks, Kricket, and Farang.","['A Supplier named Hg Walter supplies British Meat in the location London to a Restaurant named Muse.'
+ 'A Supplier named Hg Walter supplies Meat in the location London to a Restaurant named Cafe Murano.'
+ 'A Supplier named Hg Walter supplies British Meat in the location London to a Restaurant named River Café.'
+ 'A Supplier named Hg Walter supplies British Meat in the location London to a Restaurant named Petersham Nurseries.'
+ 'A Supplier named Hg Walter supplies Meat in the location London to a Restaurant named Andrew Edmunds.'
+ 'A Supplier named Hg Walter supplies Not Specified in the location Not Specified to a Restaurant named Company of Cooks.'
+ 'A Supplier named Hg Walter supplies Meat and Pantry Products in the location London to a Restaurant named Kricket.'
+ 'A Supplier named Hg Walter supplies Butchers in the location London to a Restaurant named Andrew Edmunds.'
+ 'A Supplier named Hg Walter supplies Meat in the location London to a Restaurant named Farang.'
+ 'A Supplier named H G Walter supplies Meat in the location Uk to a Restaurant named Notto.']","[""The restaurants supplied by 'Hg Walter' are Petersham Nurseries, River Café, Kricket, Elystan Street, Company of Cooks, Bobo & Wild, Tommi’s Burger Joint, Cafe Murano, Farang, Andrew Edmunds, and Muse.""]","The restaurants supplied by 'Hg Walter' are Petersham Nurseries, River Café, Kricket, Elystan Street, Company of Cooks, Bobo & Wild, Tommi’s Burger Joint, Cafe Murano, Farang, Andrew Edmunds, and Muse.",0.99999999999,1.0,1.0,0.9930771773239883
+Who are the tier 2 suppliers of 'The Chiltern Firehouse'?,"The Tier 2 suppliers of The Chiltern Firehouse are Jun Chiyabari, Satemwa Tea & Coffee Estate, and Amba.","['A T2_Supplier named Jun Chiyabari supplies Tea in the location Dhankuta, Eastern Nepal to a Supplier named Rare Tea Company, this Supplier named Rare Tea Company then supplies Tea in the location Not Specified to a Restaurant named The Chiltern Firehouse.'
+ 'A Supplier named Rare Tea Company supplies Tea in the location Not Specified to a Restaurant named The Chiltern Firehouse.'
+ 'A T2_Supplier named Satemwa Tea & Coffee Estate supplies Tea in the location Shire Highlands, Thyolo Mountains, Malawi to a Supplier named Rare Tea Company, this Supplier named Rare Tea Company then supplies Tea in the location Not Specified to a Restaurant named The Chiltern Firehouse.'
+ 'A T2_Supplier named Amba supplies Handcrafted Black Teas, Lemongrass, Butalso Fruits & Vegetables, Spices, Honey and Homemade Jams in the location Uva Highlands, Sri Lanka to a Supplier named Rare Tea Company, this Supplier named Rare Tea Company then supplies Tea in the location Not Specified to a Restaurant named The Chiltern Firehouse.'
+ 'A Supplier named Hg Walter supplies British Meat in the location London to a Restaurant named River Café.'
+ 'A T2_Supplier named Brixham Seafish supplies Fish in the location Brixham to a Supplier named The Seahorse.'
+ 'A Supplier named Cobble Lane Cured supplies High-end British Charcuterie in the location London to a Restaurant named Company of Cooks.'
+ 'A T2_Supplier named Jun Chiyabari supplies Tea in the location Dhankuta, Eastern Nepal to a Supplier named Rare Tea Company, this Supplier named Rare Tea Company then supplies Tea in the location Not Specified to a Restaurant named Heckfield Place.'
+ 'A Supplier named Hg Walter supplies Meat and Pantry Products in the location London to a Restaurant named Kricket.'
+ 'A T2_Supplier named Barfoots supplies Green Beans, Tenderstem Broccoli, Sweetcorn, Chillies in the location Uk to a Supplier named Fresh Direct.']","[""The tier 2 suppliers of 'The Chiltern Firehouse' are Jun Chiyabari, Satemwa Tea & Coffee Estate, and Amba.""]","The tier 2 suppliers of 'The Chiltern Firehouse' are Jun Chiyabari, Satemwa Tea & Coffee Estate, and Amba.",0.0,1.0,1.0,0.995417693594472
+What is the entire supply chain for the restaurant 'Notto'?,"The entire supply chain for the restaurant Notto consists of the following suppliers:
+
+1. Cibo: Supplies 00 Flour, Burrata and Other Italian Ingredients. The location is not specified.
+2. H G Walter: Supplies Meat. The location is in the UK.
+3. The Wild Room: Supplies Wild Mushrooms and Foraged Produce. The location is not specified.
+4. Wellocks at Home: Supplies Larder Ingredients. The location is in Yorkshire.","['A Supplier named Cibo supplies 00 Flour, Burrata and Other Italian Ingredients in the location Not Specified to a Restaurant named Notto.'
+ 'A Supplier named H G Walter supplies Meat in the location Uk to a Restaurant named Notto.'
+ 'A Supplier named Natoora supplies Produce in the location Not Specified to a Restaurant named Warehouse.'
+ 'A Supplier named The Wild Room supplies Wild Mushrooms and Foraged Produce in the location Not Specified to a Restaurant named Notto.'
+ 'A Supplier named Wellocks at Home supplies Larder Ingredients in the location Yorkshire to a Restaurant named Notto.'
+ 'A Supplier named Afropol supplies Fine Food Products in the location Not Specified to a Restaurant named Bocca Di Lupo.'
+ 'A Supplier named Waste Knot supplies Not Specified in the location Not Specified to a Restaurant named Company of Cooks.'
+ 'A Supplier named Afropol supplies Fine Food Products in the location Not Specified to a Restaurant named Ottolenghi Group.'
+ 'A Supplier named Brindisa supplies Not Specified in the location Not Specified to a Restaurant named Company of Cooks.'
+ 'A Supplier named Afropol supplies Fine Food Products in the location Not Specified to a Restaurant named Moro.']","[""The restaurant 'Notto' has its supply chain primarily from one Tier 1 supplier, 'Wellocks at Home'. The Tier 2 suppliers, who supply to 'Wellocks at Home', include 'Amela Tomatoes', 'Belazu', 'Blackthorn Salt', 'Eduardo Sousa', 'La Rose Noire', 'Minus 8 Vinegar', 'Manjares Truffles', 'Molyneux Kale Company', 'Spilmans Asparagus', 'Sushisushi', 'Seddon Leeks', 'The Food Heroes Family', 'Tomlinson Farm Shop', 'Truefoods', 'Westlands', 'Wildfarmed', and 'Wild Greens Farm'.""]","The restaurant 'Notto' has its supply chain primarily from one Tier 1 supplier, 'Wellocks at Home'. The Tier 2 suppliers, who supply to 'Wellocks at Home', include 'Amela Tomatoes', 'Belazu', 'Blackthorn Salt', 'Eduardo Sousa', 'La Rose Noire', 'Minus 8 Vinegar', 'Manjares Truffles', 'Molyneux Kale Company', 'Spilmans Asparagus', 'Sushisushi', 'Seddon Leeks', 'The Food Heroes Family', 'Tomlinson Farm Shop', 'Truefoods', 'Westlands', 'Wildfarmed', and 'Wild Greens Farm'.",0.99999999999,0.5,1.0,0.9662649872425962
+What are some common suppliers of 'Meat'?,"Some suppliers of Meat are The Rare Breed Meat Company, Hg Walter, Swaledale Butchers, Aubrey Allen, and Lake District Farmers.","['A Supplier named The Rare Breed Meat Company supplies Meat and Game in the location London to a Restaurant named Trinity.'
+ 'A Supplier named Swaledale Butchers supplies Rare-breed Meats in the location Yorkshire to a Restaurant named Som Saa.'
+ 'A Supplier named The Rare Breed Meat Company supplies Meat and Game in the location London to a Restaurant named The Ned.'
+ 'A Supplier named Hg Walter supplies Meat in the location London to a Restaurant named Cafe Murano.'
+ 'A Supplier named The Rare Breed Meat Company supplies Meat and Game in the location London to a Restaurant named The Hawksmoor.'
+ 'A Supplier named Hg Walter supplies Meat in the location London to a Restaurant named Farang.'
+ 'A Supplier named Lake District Farmers supplies Meat in the location Lake District to a Restaurant named Moor Hall.'
+ 'A Supplier named Aubrey Allen supplies Meat in the location Uk to a Restaurant named The Black Swan.'
+ 'A Supplier named Hg Walter supplies Meat and Pantry Products in the location London to a Restaurant named Kricket.'
+ 'A Supplier named Hg Walter supplies British Meat in the location London to a Restaurant named Muse.']","[""Some common suppliers of 'Meat' are Aubrey Allen, H G Walter, and Lake District Farmers.""]","Some common suppliers of 'Meat' are Aubrey Allen, H G Walter, and Lake District Farmers.",0.6211640211536684,1.0,0.6,0.9594081237049815
+Which suppliers of 'Meat' are based in 'London'?,The suppliers of Meat based in London are Hg Walter and The Rare Breed Meat Company.,"['A Supplier named Hg Walter supplies British Meat in the location London to a Restaurant named Petersham Nurseries.'
+ 'A Supplier named The Rare Breed Meat Company supplies Meat and Game in the location London to a Restaurant named Trinity.'
+ 'A Supplier named Hg Walter supplies British Meat in the location London to a Restaurant named River Café.'
+ 'A Supplier named The Rare Breed Meat Company supplies Meat and Game in the location London to a Restaurant named The Ned.'
+ 'A Supplier named Hg Walter supplies British Meat in the location London to a Restaurant named Muse.'
+ 'A Supplier named The Rare Breed Meat Company supplies Meat and Game in the location London to a Restaurant named The Hawksmoor.'
+ 'A Supplier named Hg Walter supplies Meat and Pantry Products in the location London to a Restaurant named Kricket.'
+ 'A Supplier named Hg Walter supplies Meat in the location London to a Restaurant named Andrew Edmunds.'
+ 'A Supplier named Hg Walter supplies Meat in the location London to a Restaurant named Farang.'
+ 'A Supplier named Hg Walter supplies Meat in the location London to a Restaurant named Cafe Murano.']","[""The supplier of 'Meat' based in 'London' is 'Hg Walter'.""]",The supplier of 'Meat' based in 'London' is 'Hg Walter'.,0.6899659863847012,1.0,1.0,0.9798012675926678
