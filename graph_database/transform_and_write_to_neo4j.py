@@ -1,3 +1,7 @@
+# This function takes the data after NER and RE is completed
+# And it writes the data into the neo4j graph database
+
+# Import libraries
 import json
 import os
 from dotenv import load_dotenv
