@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from collections import defaultdict
 from google.cloud import storage
 import json
+import argparse
 
 # Load environment variables
 load_dotenv()
@@ -101,10 +102,10 @@ def save_text_to_cloud_storage(text_data, file_name):
     print(f"Text data saved to {BUCKET_NAME}/vector_database_resources/textual_representations/{file_name}")
 
 # Main execution flow
-def main():
+def main(output_file_name):  # Accept the output_file_name parameter
     data = fetch_nodes_and_relationships()
     clusters = find_clusters(data)
-    all_cluster_nodes = set().union(*clusters)
+    # all_cluster_nodes = set().union(*clusters)
 
     all_texts = ""
 
@@ -117,27 +118,19 @@ def main():
     for text in chain_representations:
         all_texts += text + "\n"
 
-    save_text_to_cloud_storage(all_texts, "neo4j_textual_representations.txt")
+    # Use the output_file_name for saving the text data
+    save_text_to_cloud_storage(all_texts, output_file_name)
 
     driver.close()
 
 if __name__ == "__main__":
-    main()
+    # Setup argparse
+    parser = argparse.ArgumentParser(description='Generate textual representations from Neo4j and save to GCS.')
+    parser.add_argument('output_file_name', type=str, help='The name of the output file to save data to')
+    args = parser.parse_args()
 
+    # Call main with the output file name
+    main(args.output_file_name)
 
-# # Open a file to write
-# with open("supply_chain_textual_representations.txt", "w") as file:
-#     # Generate and write textual representations for nodes in identified clusters
-#     for cluster_nodes in clusters:  # Process each cluster separately
-#         textual_representations = generate_textual_representation(cluster_nodes)
-#         for text in textual_representations:
-#             file.write(text + "\n")
-#
-#     # Generate and write complete supply chain instances including T2_Suppliers
-#     chain_representations = generate_complete_supply_chain_text()
-#     for text in chain_representations:
-#         file.write(text + "\n")
-#
-# driver.close()
 
 
