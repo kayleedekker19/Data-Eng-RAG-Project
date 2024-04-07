@@ -8,6 +8,7 @@ from google.cloud import aiplatform
 from kfp import compiler
 from kfp.dsl import component, InputPath, OutputPath, pipeline
 import kfp.dsl as dsl
+from google.cloud import storage
 import json
 
 # Load environment variables
@@ -270,16 +271,22 @@ compiler.Compiler().compile(
 
 # Move compiled pipeline files to GCS Bucket
 # Use subprocess to execute gsutil command
-# Construct an environment with only the variables needed
-env = {
-    'GOOGLE_APPLICATION_CREDENTIALS': os.getenv('GOOGLE_APPLICATION_CREDENTIALS'),
-    'PROJECT_ID': os.getenv('PROJECT_ID'),
-    'BUCKET': os.getenv('BUCKET_NAME'),
-}
-
-subprocess.run(["gsutil", "cp", f"{DIR}/{NOTEBOOK}.yaml", f"{URI}/{TIMESTAMP}/kfp/"], env=env, check=True)
-
 # subprocess.run(["gsutil", "cp", f"{DIR}/{NOTEBOOK}.yaml", f"{URI}/{TIMESTAMP}/kfp/"], check=True)
+
+def upload_blob(bucket_name, source_file_name, destination_blob_name):
+    """Uploads a file to the bucket."""
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    blob.upload_from_filename(source_file_name)
+
+    print(f"File {source_file_name} uploaded to {destination_blob_name}.")
+
+# Usage:
+destination_blob_name = f"{DATANAME}/models/{NOTEBOOK}/{TIMESTAMP}/kfp/{NOTEBOOK}.yaml"
+upload_blob(BUCKET, f"{DIR}/{NOTEBOOK}.yaml", destination_blob_name)
+
 
 ## Create Vertex AI Pipeline Job
 # Setting variable names
