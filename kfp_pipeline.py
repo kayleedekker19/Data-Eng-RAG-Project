@@ -319,3 +319,4 @@ def run_pipeline_job():
 # Run the pipeline job
 if __name__ == "__main__":
     run_pipeline_job()
+    print("Completed the pipeline successfully")
