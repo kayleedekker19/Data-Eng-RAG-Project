@@ -56,14 +56,12 @@ def get_all_restaurants(location, keyword="restaurant"):
     return all_restaurants
 
 
-
 # Function to save data to Google Cloud Storage
 def save_to_cloud_storage(data, file_name):
     data_str = json.dumps(data, indent=2)
-    blob = bucket.blob(f"restaurants/{file_name}")
+    blob = bucket.blob(f"wip_supply_chain_progress/restaurants/{file_name}")
     blob.upload_from_string(data_str, content_type='application/json')
-    print(f"Data saved to {BUCKET_NAME}/restaurants/{file_name}")
-
+    print(f"Data saved to {BUCKET_NAME}/wip_supply_chain_progress/restaurants/{file_name}")
 
 locations = [
     ("51.5308,-0.1238", "kings_cross"),

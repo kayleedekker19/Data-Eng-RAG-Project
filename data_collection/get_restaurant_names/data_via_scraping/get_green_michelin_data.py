@@ -4,8 +4,12 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import csv
-import time
 import re
+import time
+import io
+import os
+from google.cloud import storage
+from dotenv import load_dotenv
 
 # Create a ChromeOptions object and add the headless argument
 chrome_options = Options()
@@ -48,12 +52,37 @@ for url in urls:
 
 driver.quit()
 
-# Save to CSV
-with open('green_michelin_restaurants.csv', 'w', newline='', encoding='utf-8') as file:
-    writer = csv.writer(file)
-    writer.writerow(['Green Restaurant Name'])
-    for name in green_restaurants:
+# Save that into GCS
+# Load environment variables
+load_dotenv()
+
+# Google Cloud Storage Configurations
+PROJECT_ID = os.getenv("PROJECT_ID")
+BUCKET_NAME = os.getenv("BUCKET_NAME")
+
+# Initialize Google Cloud Storage Client
+storage_client = storage.Client()
+bucket = storage_client.bucket(BUCKET_NAME)
+
+def save_to_cloud_storage_csv(data, file_name):
+    # Using StringIO to create a file-like object in memory
+    output = io.StringIO()
+    writer = csv.writer(output)
+
+    for name in data:
         writer.writerow([name])
+
+    # Move back to the start of the file-like object
+    output.seek(0)
+
+    # Create a new blob in GCS and upload the file-like object's content
+    blob = bucket.blob(f"restaurant_names/{file_name}")
+    blob.upload_from_string(output.getvalue(), content_type='text/csv')
+    print(f"Data saved to {BUCKET_NAME}/restaurant_names/{file_name}")
+
+
+# Call the function to save your data to GCS
+save_to_cloud_storage_csv(green_restaurants, 'green_michelin_restaurants.csv')
 
 print("Data saved to 'green_michelin_restaurants.csv'")
 
