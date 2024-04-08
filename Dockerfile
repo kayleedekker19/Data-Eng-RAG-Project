@@ -22,4 +22,4 @@ RUN pip install --no-cache-dir -r requirements_2.txt
 RUN chmod +x run_pipeline.sh
 
 # Run kfp_pipeline.py when the container launches
-CMD ["/bin/bash", "run_pipeline.sh", "http://*:8080"]
+CMD ["/bin/bash", "run_pipeline.sh"]
