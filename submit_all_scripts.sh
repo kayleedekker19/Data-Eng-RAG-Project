@@ -2,7 +2,7 @@
 
 set -e  # Exit immediately if a command exits with a non-zero status.
 
-source .env2
+#source .env2
 
 #### Script 1
 echo "Starting data processing and writing to Neo4j..."
