@@ -79,3 +79,4 @@ def ask_question(input_question):
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
+    print("http://localhost:4000/")
