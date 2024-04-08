@@ -17,4 +17,4 @@ RUN pip install --no-cache-dir -r requirements_2.txt
 EXPOSE 80
 
 # Run kfp_pipeline.py when the container launches
-CMD ["python3", "kfp_pipeline.py"]
+CMD ["python3", "vertex_ai/kfp_pipeline.py"]

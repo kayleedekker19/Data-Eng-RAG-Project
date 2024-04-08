@@ -236,8 +236,8 @@ def process_articles_component(
         raise
 
 @dsl.pipeline(
-    name=f'kfp-{NOTEBOOK}-{DATANAME}-{TIMESTAMP}',
-    pipeline_root=f'{URI}/{TIMESTAMP}/kfp/'
+    name=f'kfp-{NOTEBOOK}',
+    pipeline_root=f'{URI}/kfp/'
 )
 def supply_chain_pipeline(
     news_api_key: str,
@@ -278,14 +278,14 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 # Setting variable names
 PROJECT_ID = PROJECT_ID
 REGION = 'us-east1'
-PIPELINE_NAME = f'kfp-{NOTEBOOK}-{DATANAME}-{TIMESTAMP}'
+# PIPELINE_NAME = f'kfp-{NOTEBOOK}-{DATANAME}-{TIMESTAMP}'
 
 def run_pipeline_job(restaurants_csv_path, output_folder):
     """Runs the Vertex AI pipeline job with dynamic input and output paths."""
     # Initialize the Vertex AI client
     aiplatform.init(project=PROJECT_ID, location=REGION)
     pipeline_job = aiplatform.PipelineJob(
-        display_name=f'kfp-{NOTEBOOK}-{DATANAME}-{TIMESTAMP}',
+        display_name=f'kfp-{NOTEBOOK}',
         template_path=f"{URI}/kfp/{NOTEBOOK}.yaml",
         parameter_values={
             'news_api_key': NEWS_API_KEY,
