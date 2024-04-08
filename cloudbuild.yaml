@@ -21,9 +21,9 @@ steps:
       - '--region=${_REGION}'
       - '--platform=managed'
       - '--allow-unauthenticated'
-      - '--update-secrets=NEWS_API_KEY=NEWS_API_KEY:latest,OPENAI_API_KEY=OPENAI_API_KEY:latest,BUCKET_NAME=BUCKET_NAME:latest'
+      - '--update-secrets=NEWS_API_KEY=NEWS_API_KEY:latest,OPENAI_API_KEY=OPENAI_API_KEY:latest,BUCKET_NAME=BUCKET_NAME:latest,PROJECT_ID=PROJECT_ID:latest'
 
 substitutions:
   _SERVICE_NAME: 'kfp-pipeline'
-  _REGION: 'us-east1'
+  _REGION: 'us-west2'
 
