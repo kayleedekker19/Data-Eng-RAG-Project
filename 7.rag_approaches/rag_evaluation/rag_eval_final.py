@@ -175,10 +175,10 @@ def extract_grouped_contexts_from_file(input_file_path):
 
 
 # Using the function
-answers_file_path = '/Users/kayleedekker/PycharmProjects/Data-Eng-RAG-Project/rag_approaches/three_rag_options/conversation_log.txt'
+answers_file_path = '/7.rag_approaches/three_rag_options/conversation_log.txt'
 answers_3 = extract_answers_from_log(answers_file_path)
 
-contexts_file_path = '/Users/kayleedekker/PycharmProjects/Data-Eng-RAG-Project/rag_approaches/three_rag_options/contexts_log.txt'
+contexts_file_path = '/7.rag_approaches/three_rag_options/contexts_log.txt'
 contexts_3 = extract_grouped_contexts_from_file(contexts_file_path)
 
 
