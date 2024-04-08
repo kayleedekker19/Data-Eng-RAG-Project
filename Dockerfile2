@@ -6,9 +6,9 @@ WORKDIR /usr/src/app
 
 # Copy the current directory contents into the container at /usr/src/app
 COPY requirements_3.txt .
-COPY graph_database/transform_and_write_to_neo4j.py graph_database/
-COPY vector_database/get_relevant_clusters.py vector_database/
-COPY vector_database/embeddings_to_pinecone.py vector_database/
+COPY 4_graph_database/transform_and_write_to_neo4j.py graph_database/
+COPY 5_vector_database/get_relevant_clusters.py vector_database/
+COPY 5_vector_database/embeddings_to_pinecone.py vector_database/
 COPY submit_all_scripts.sh .
 
 # Install any needed packages specified in requirements.txt

@@ -11,7 +11,7 @@ OUTPUT_PATH="processed_output_with_docker" # Adjust this to your desired output 
 
 # Running the Python script with input and output arguments
 echo "Running the pipeline with input: $INPUT_CSV and output: $OUTPUT_PATH"
-python3 vertex_ai/kfp_pipeline.py --input_csv $INPUT_CSV --output_path $OUTPUT_PATH
+python3 2_vertex_ai/kfp_pipeline.py --input_csv $INPUT_CSV --output_path $OUTPUT_PATH
 
 if [ $? -eq 0 ]; then
     echo "Pipeline completed successfully and data uploaded to: $OUTPUT_PATH"
