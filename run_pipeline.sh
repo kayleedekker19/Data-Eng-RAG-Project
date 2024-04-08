@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source .env3
+#source .env3
 
 # Echo start of the script
 echo "Starting the KFP pipeline process..."
