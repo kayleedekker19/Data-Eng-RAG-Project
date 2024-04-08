@@ -7,8 +7,6 @@ FROM gcr.io/google.com/cloudsdktool/cloud-sdk:latest
 # Set the working directory in the container
 WORKDIR /app
 
-# add for gpc
-
 # Copy the current directory contents into the container at /app
 COPY . /app
 
