@@ -16,5 +16,8 @@ RUN pip install --no-cache-dir -r requirements_2.txt
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
+# Ensure run_pipeline.sh is executable
+RUN chmod +x run_pipeline.sh
+
 # Run kfp_pipeline.py when the container launches
-CMD ["python3", "run_pipeline.sh"]
+CMD ["/bin/bash", "run_pipeline.sh"]
