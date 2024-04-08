@@ -17,13 +17,11 @@ steps:
       - 'run'
       - 'deploy'
       - '${_SERVICE_NAME}'
-      - '--image'
-      - 'gcr.io/${PROJECT_ID}/${_SERVICE_NAME}:${SHORT_SHA}'
-      - '--region'
-      - '${_REGION}'
-      - '--platform'
-      - 'managed'
+      - '--image=gcr.io/${PROJECT_ID}/${_SERVICE_NAME}:${SHORT_SHA}'
+      - '--region=${_REGION}'
+      - '--platform=managed'
       - '--allow-unauthenticated'
+      - '--update-secrets=NEWS_API_KEY=news-api-key:latest,OPENAI_API_KEY=openai-api-key:latest,BUCKET_NAME=bucket-name:latest'
 
 substitutions:
   _SERVICE_NAME: 'kfp-pipeline'
