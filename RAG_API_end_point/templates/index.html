@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supply Chain Queries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 300px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .response {
+            font-size: 24px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .chat-history {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Supply Chain Queries</h1>
+        <div class="chat-history">
+            {% for message in chat_history %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        <div class="input-container">
+            <form action="/ask" method="post">
+                <input type="text" name="user_input" placeholder="Enter your question...">
+                <br>
+                <input type="submit" value="Ask">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
