@@ -1,6 +1,5 @@
 options:
-  logging: LEGACY
-  logsBucket: 'gs://cloud-build-logs-bucket-supplier'
+  logging: CLOUD_LOGGING_ONLY
 
 steps:
   # Step 1: Build the Docker image
