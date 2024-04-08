@@ -1,3 +1,7 @@
+options:
+  logging: LEGACY
+  logsBucket: 'gs://cloud-build-logs-bucket-supplier'
+
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
@@ -25,3 +29,4 @@ steps:
 substitutions:
   _SERVICE_NAME: 'kfp-pipeline'
   _REGION: 'us-east1'
+
