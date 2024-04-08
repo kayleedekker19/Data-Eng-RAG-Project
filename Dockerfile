@@ -8,7 +8,6 @@ FROM gcr.io/google.com/cloudsdktool/cloud-sdk:latest
 WORKDIR /app
 
 # add for gpc
-ENV HOST 0.0.0.0
 
 # Copy the current directory contents into the container at /app
 COPY . /app
@@ -18,8 +17,6 @@ RUN pip install --no-cache-dir -r requirements_2.txt
 
 # Make port 80 available to the world outside this container
 #EXPOSE 80
-# add for gpc
-EXPOSE 8080
 
 # Ensure run_pipeline.sh is executable
 RUN chmod +x run_pipeline.sh
