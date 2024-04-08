@@ -10,6 +10,7 @@ from kfp.dsl import component, InputPath, OutputPath, pipeline
 import kfp.dsl as dsl
 from google.cloud import storage
 import json
+import argparse
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -26,12 +27,11 @@ BUCKET = os.getenv("BUCKET_NAME")
 DATANAME = 'api-news-data'
 NOTEBOOK = 'supply_chain_pipeline_notebook'
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
-URI = f"gs://{BUCKET}/{DATANAME}/models/{NOTEBOOK}"
+URI = f"gs://{BUCKET}/{DATANAME}"
 DIR = f"temp/{NOTEBOOK}"
 
 # Ensure the directory exists
 os.makedirs(DIR, exist_ok=True)
-
 aiplatform.init(project=PROJECT_ID, location=REGION)
 
 
@@ -264,16 +264,6 @@ def supply_chain_pipeline(
         output_folder=output_folder,
     )
 
-## Compile Pipeline
-compiler.Compiler().compile(
-    pipeline_func=supply_chain_pipeline,
-    package_path=f"{DIR}/{NOTEBOOK}.yaml"
-)
-
-# Move compiled pipeline files to GCS Bucket
-# Use subprocess to execute gsutil command
-# subprocess.run(["gsutil", "cp", f"{DIR}/{NOTEBOOK}.yaml", f"{URI}/{TIMESTAMP}/kfp/"], check=True)
-
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
     storage_client = storage.Client()
@@ -284,40 +274,53 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
     print(f"File {source_file_name} uploaded to {destination_blob_name}.")
 
-# Usage:
-destination_blob_name = f"{DATANAME}/models/{NOTEBOOK}/{TIMESTAMP}/kfp/{NOTEBOOK}.yaml"
-upload_blob(BUCKET, f"{DIR}/{NOTEBOOK}.yaml", destination_blob_name)
-
-
 ## Create Vertex AI Pipeline Job
 # Setting variable names
 PROJECT_ID = PROJECT_ID
 REGION = 'us-east1'
 PIPELINE_NAME = f'kfp-{NOTEBOOK}-{DATANAME}-{TIMESTAMP}'
-TEMPLATE_PATH = f"{URI}/{TIMESTAMP}/kfp/{NOTEBOOK}.yaml"
 
-# Initialize the Vertex AI client
-aiplatform.init(project=PROJECT_ID, location=REGION)
-
-# Create the pipeline job
-def run_pipeline_job():
+def run_pipeline_job(restaurants_csv_path, output_folder):
+    """Runs the Vertex AI pipeline job with dynamic input and output paths."""
+    # Initialize the Vertex AI client
     aiplatform.init(project=PROJECT_ID, location=REGION)
     pipeline_job = aiplatform.PipelineJob(
         display_name=f'kfp-{NOTEBOOK}-{DATANAME}-{TIMESTAMP}',
-        template_path=f"{URI}/{TIMESTAMP}/kfp/{NOTEBOOK}.yaml",
+        template_path=f"{URI}/kfp/{NOTEBOOK}.yaml",
         parameter_values={
             'news_api_key': NEWS_API_KEY,
             'openai_api_key': OPENAI_API_KEY,
             'project_id': PROJECT_ID,
             'bucket_name': BUCKET,
-            'restaurants_csv_path': 'restaurant_names/restaurants_names_entry.csv',
-            'output_folder': f'{BUCKET}/processed_output',
+            'restaurants_csv_path': restaurants_csv_path,
+            'output_folder': output_folder,
         },
         enable_caching=False
     )
     pipeline_job.run()
 
-# Run the pipeline job
+# Argument parsing and script execution
 if __name__ == "__main__":
-    run_pipeline_job()
+    parser = argparse.ArgumentParser(description='Run Vertex AI and ML Pipelines with dynamic input and output')
+    parser.add_argument('--input_csv', type=str, required=True, help='Path to the input CSV file containing restaurant names')
+    parser.add_argument('--output_path', type=str, required=True, help='Output path in the bucket for the final data')
+    args = parser.parse_args()
+
+    # Constructing the dynamic paths based on input arguments
+    restaurants_csv_dynamic_path = f'restaurant_names/{args.input_csv}'
+    output_folder_dynamic_path = f'{args.output_path}'
+
+    # Compiling the pipeline does not change
+    compiler.Compiler().compile(
+        pipeline_func=supply_chain_pipeline,
+        package_path=f"{DIR}/{NOTEBOOK}.yaml"
+    )
+
+    # Uploading the compiled pipeline to GCS remains unchanged
+    destination_blob_name = f"{DATANAME}/kfp/{NOTEBOOK}.yaml"
+    upload_blob(BUCKET, f"{DIR}/{NOTEBOOK}.yaml", destination_blob_name)
+
+    # Run the pipeline job with the dynamic paths
+    run_pipeline_job(restaurants_csv_dynamic_path, output_folder_dynamic_path)
+
     print("Completed the pipeline successfully")
