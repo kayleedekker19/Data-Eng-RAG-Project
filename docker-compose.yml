@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  cloud_sdk_service:
+    build:
+      context: .   # Root of repository
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+
+  graph_vector_service:
+    build:
+      context: .   # Root of repository
+      dockerfile: Dockerfile2
+    ports:
+      - "8081:80"
+
+  flask_service:
+    build:
+      context: .   # Root of repository
+      dockerfile: Dockerfile3
+    ports:
+      - "5000:5000"
