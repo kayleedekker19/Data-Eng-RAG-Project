@@ -4,13 +4,13 @@ Rag Pipeline,Who are the tier 2 suppliers of 'The Chiltern Firehouse'?,0.0,1.0,1
 Rag Pipeline,What is the entire supply chain for the restaurant 'Notto'?,0.99999999999,0.5,1.0,0.9663607045292436
 Rag Pipeline,What are some common suppliers of 'Meat'?,0.5657142857029713,0.5,0.6666666666666666,1.000000000000001
 Rag Pipeline,Which suppliers of 'Meat' are based in 'London'?,0.5304421768631705,1.0,1.0,0.9750646541601918
-Rag with Chains,What restaurants are supplied by 'Hg Walter'?,0.5803991020363761,0.0,0.5,0.8782245477359419
-Rag with Chains,Who are the tier 2 suppliers of 'The Chiltern Firehouse'?,0.1249999999875,1.0,0.5,0.8167172761114232
-Rag with Chains,What is the entire supply chain for the restaurant 'Notto'?,0.9308207197945564,0.5,0.4,0.7742594229027754
-Rag with Chains,What are some common suppliers of 'Meat'?,0.2849207766741811,0.0,0.5714285714285714,0.7828408944242811
-Rag with Chains,Which suppliers of 'Meat' are based in 'London'?,0.3134863197005868,1.0,0.3333333333333333,0.8022217349608431
+Rag with Chains,What restaurants are supplied by 'Hg Walter'?,0.443888888880011,0.0,0.0,0.0
+Rag with Chains,Who are the tier 2 suppliers of 'The Chiltern Firehouse'?,0.1249999999875,1.0,0.5,0.8134910238962917
+Rag with Chains,What is the entire supply chain for the restaurant 'Notto'?,0.999999999995,0.5,1.0,0.7742594229027754
+Rag with Chains,What are some common suppliers of 'Meat'?,0.2849207766741811,0.0,0.5714285714285714,0.7959901755585285
+Rag with Chains,Which suppliers of 'Meat' are based in 'London'?,0.09999999999,1.0,0.0,0.0
 Rag with Memory and Chains,What restaurants are supplied by 'Hg Walter'?,0.99999999999,1.0,1.0,0.9930771773239884
 Rag with Memory and Chains,Who are the tier 2 suppliers of 'The Chiltern Firehouse'?,0.0,1.0,1.0,0.995417693594472
-Rag with Memory and Chains,What is the entire supply chain for the restaurant 'Notto'?,0.99999999999,0.5,1.0,0.9662649872425962
-Rag with Memory and Chains,What are some common suppliers of 'Meat'?,0.6211640211536684,1.0,0.6,0.9594081237049816
+Rag with Memory and Chains,What is the entire supply chain for the restaurant 'Notto'?,0.99999999999,0.5,1.0,0.966343633929657
+Rag with Memory and Chains,What are some common suppliers of 'Meat'?,0.6211640211536684,1.0,0.4,0.9594081237049816
 Rag with Memory and Chains,Which suppliers of 'Meat' are based in 'London'?,0.6899659863847012,1.0,1.0,0.9798012675926678

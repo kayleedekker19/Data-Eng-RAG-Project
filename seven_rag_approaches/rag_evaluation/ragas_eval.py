@@ -25,3 +25,4 @@ all_df = combined_df[["rag_approach", "question", "context_precision", "context_
 
 # Save the final dataframe to CSV in your directory
 all_df.to_csv('combined_ragas_evaluations.csv', index=False)
+print("All files have been combined")

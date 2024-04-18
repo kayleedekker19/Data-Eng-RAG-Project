@@ -34,7 +34,7 @@ questions = [
 answers_1 = []
 contexts_1 = []
 
-from rag_approaches.three_rag_options.rag_pipeline.rag_pipeline_1 import pipeline_main
+from seven_rag_approaches.three_rag_options.rag_pipeline.rag_pipeline_1 import pipeline_main
 
 for query in questions:
     query_answer, query_context = pipeline_main(query)
@@ -70,7 +70,7 @@ print("Completed Method 1")
 
 
 ### METHOD 2.
-from rag_approaches.three_rag_options.rag_chain.rag_chain_2 import run_full_supplier_chain
+from seven_rag_approaches.three_rag_options.rag_chain.rag_chain_2 import run_full_supplier_chain
 
 user_input_restaurant_list = [
         " ",
@@ -96,7 +96,7 @@ data_2 = {
     "question": questions,
     "answer": answers_2,
     "contexts": contexts_2,
-    "ground_truth": ground_truths  # Corrected key name here
+    "ground_truth": ground_truths
 }
 
 # Convert dict to dataset and specify the schema explicitly
@@ -175,10 +175,12 @@ def extract_grouped_contexts_from_file(input_file_path):
 
 
 # Using the function
-answers_file_path = '/7_rag_approaches/three_rag_options/conversation_log.txt'
+# answers_file_path = '/seven_rag_approaches/three_rag_options/conversation_log.txt'
+answers_file_path = "/Users/kayleedekker/PycharmProjects/Data-Eng-RAG-Project/seven_rag_approaches/three_rag_options/conversation_log.txt"
 answers_3 = extract_answers_from_log(answers_file_path)
 
-contexts_file_path = '/7_rag_approaches/three_rag_options/contexts_log.txt'
+# contexts_file_path = '/seven_rag_approaches/three_rag_options/contexts_log.txt'
+contexts_file_path = "/Users/kayleedekker/PycharmProjects/Data-Eng-RAG-Project/seven_rag_approaches/three_rag_options/contexts_log.txt"
 contexts_3 = extract_grouped_contexts_from_file(contexts_file_path)
 
 
@@ -210,39 +212,3 @@ df_3.to_csv('ragas_rag_eval_3.csv', index=False)
 print("Completed Method 3")
 
 
-### RAGAS evaluation
-
-# Combine data from all methods into one list of dictionaries
-# combined_data = []
-# for i, question in enumerate(questions):
-#     combined_data.append({
-#         "method": "Method 1",
-#         "question": question,
-#         "answer": answers_1[i],
-#         "contexts": contexts_1[i],
-#         "ground_truth": ground_truths[i]
-#     })
-#     combined_data.append({
-#         "method": "Method 2",
-#         "question": question,
-#         "answer": answers_2[i],
-#         "contexts": contexts_2[i],
-#         "ground_truth": ground_truths[i]
-#     })
-#     combined_data.append({
-#         "method": "Method 3",
-#         "question": question,
-#         "answer": answers_3[i],
-#         "contexts": contexts_3[i],
-#         "ground_truth": ground_truths[i]
-#     })
-#
-# for item in combined_data:
-#     if isinstance(item['answer'], dict):
-#         item['answer'] = json.dumps(item['answer'])
-#     if not isinstance(item['ground_truth'], str):  # Ensure ground_truth is a string
-#         item['ground_truth'] = json.dumps(item['ground_truth'])
-#
-# # Now proceed to convert to a pandas DataFrame
-# df = pd.DataFrame(combined_data)
-# df.to_csv('combined_data_for_ragas.csv', index=False)
