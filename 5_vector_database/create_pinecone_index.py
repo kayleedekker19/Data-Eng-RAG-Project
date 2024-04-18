@@ -1,3 +1,4 @@
+# This function creates a pinecone index
 from pinecone import Pinecone, ServerlessSpec
 import os
 from dotenv import load_dotenv
@@ -11,7 +12,7 @@ index_name = os.getenv("PINECONE_INDEX_NAME")
 # Initialize Pinecone
 pc = Pinecone(api_key=pinecone_api_key)
 
-# Ensure API key is correctly recognized before proceeding
+# Let's ensure API key is correctly recognized before proceeding
 if not pinecone_api_key:
     raise ValueError("Pinecone API key is missing. Please check your environment variables.")
 
@@ -23,14 +24,14 @@ try:
 
     # Define index specifications
     index_name = index_name
-    dimension = 1536  # Dimension for the model you are using - OpenAI's
+    dimension = 1536
     metric = "cosine"  # Chosen for the use case
 
     # Create the index if it doesn't exist
     if index_name not in existing_indexes:
         pc.create_index(
             name=index_name,
-            dimension=dimension,  # Adjust this according to your embeddings' dimensions
+            dimension=dimension,
             metric=metric,
             spec=ServerlessSpec(
                 cloud="aws",
