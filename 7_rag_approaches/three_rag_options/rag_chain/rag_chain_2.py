@@ -81,11 +81,6 @@ def generate_t2_suppliers(top_k, output=None):
         t2_supplier_outputs[supplier] = t2_output
     return t2_supplier_outputs, contexts
 
-# def run_full_supplier_chain(user_input_restaurant, top_k=10):
-#     output = generate_t1_suppliers(top_k=top_k, user_input_restaurant=user_input_restaurant)
-#     t2_supplier_outputs = generate_t2_suppliers(top_k=top_k, output=output)
-#     combined_outputs = {"Tier 1 Suppliers": output, "Tier 2 Suppliers": t2_supplier_outputs}
-#     return combined_outputs
 
 def run_full_supplier_chain(user_input_restaurant, top_k=10):
     output, contexts_t1 = generate_t1_suppliers(top_k=top_k, user_input_restaurant=user_input_restaurant)
