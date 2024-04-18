@@ -44,7 +44,7 @@ jobs:
       run: docker-compose -f docker-compose.yml push
 
     - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@master
+      uses: google-github-actions/setup-gcloud@v0.5.0
       with:
         project_id: ${{ secrets.PROJECT_ID }}
         service_account_key: ${{ secrets.GCP_SA_KEY }}
