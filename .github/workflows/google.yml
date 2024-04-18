@@ -91,6 +91,9 @@ jobs:
         tar xzf kustomize.tar.gz
         chmod u+x kustomize
         sudo mv kustomize /usr/local/bin/
+
+    - name: Verify Kustomize Installation
+      run: |
         which kustomize
         kustomize version
 
