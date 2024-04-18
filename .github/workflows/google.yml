@@ -97,6 +97,11 @@ jobs:
         which kustomize
         kustomize version
 
+    - name: List files in Deploy directory
+      run: |
+        cd deploy/
+        ls -l
+
     - name: Deploy
       run: |-
         cd deploy/
@@ -104,4 +109,12 @@ jobs:
         kustomize build . | kubectl apply -f -
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
+
+#    - name: Deploy
+#      run: |-
+#        cd deploy/
+#        kustomize edit set image $REPOSITORY=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
+#        kustomize build . | kubectl apply -f -
+#        kubectl rollout status deployment/$DEPLOYMENT_NAME
+#        kubectl get services -o wide
     
