@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: cloud_sdk_service:latest
+    image: ${DOCKER_HUB_USERNAME}/cloud_sdk_service:latest
     ports:
       - "8080:80"
     environment:
@@ -18,7 +18,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile2
-    image: graph_vector_service:latest
+    image: ${DOCKER_HUB_USERNAME}/graph_vector_service:latest
     ports:
       - "8081:80"
     environment:
@@ -35,7 +35,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile3
-    image: flask_service:latest
+    image: ${DOCKER_HUB_USERNAME}/flask_service:latest
     ports:
       - "4000:4000"
     environment:
