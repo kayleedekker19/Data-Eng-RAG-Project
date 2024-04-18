@@ -13,7 +13,7 @@ COPY 8_rag_api_end_point_flask/ /app/
 RUN pip install --no-cache-dir -r requirements_4.txt
 
 # Make port 5000 available to the world outside this container
-EXPOSE 5000
+EXPOSE 4000
 
 # Run your Flask application
 CMD ["python3", "rag_memory_end_point.py"]
