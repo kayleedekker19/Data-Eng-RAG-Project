@@ -53,8 +53,6 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
 
-    - name: Echo Docker Tag
-      run: echo "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
 
     # Build the Docker image
     - name: Build
@@ -74,8 +72,8 @@ jobs:
     # Set up kustomize
     - name: Set up Kustomize
       run: |-
-        curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.5.5/kustomize_v4.5.5_linux_amd64.tar.gz
-        tar xzf kustomize_v4.5.5_linux_amd64.tar.gz
+        curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.1/kustomize_v5.4.1_linux_amd64.tar.gz
+        tar xzf kustomize_v5.4.1_linux_amd64.tar.gz
         chmod u+x ./kustomize
 
     # Deploy the Docker image to the GKE cluster
