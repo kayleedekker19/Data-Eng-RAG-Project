@@ -2,21 +2,43 @@ version: '3.8'
 services:
   cloud_sdk_service:
     build:
-      context: .   # Root of repository
+      context: .
       dockerfile: Dockerfile
+    image: cloud_sdk_service:latest
     ports:
       - "8080:80"
+    environment:
+      NEWS_API_KEY: $NEWS_API_KEY
+      OPENAI_API_KEY: $OPENAI_API_KEY
+      PROJECT_ID: $PROJECT_ID
+      REGION: $REGION
+      BUCKET_NAME: $BUCKET_NAME
 
   graph_vector_service:
     build:
-      context: .   # Root of repository
+      context: .
       dockerfile: Dockerfile2
+    image: graph_vector_service:latest
     ports:
       - "8081:80"
+    environment:
+      PROJECT_ID: $PROJECT_ID
+      BUCKET_NAME: $BUCKET_NAME
+      PINECONE_KEY: $PINECONE_KEY
+      PINECONE_INDEX_NAME: $PINECONE_INDEX_NAME
+      DATABASE_URI: $DATABASE_URI
+      NEO_USERNAME: $NEO_USERNAME
+      NEO_PASSWORD: $NEO_PASSWORD
+      OPENAI_API_KEY: $OPENAI_API_KEY
 
   flask_service:
     build:
-      context: .   # Root of repository
+      context: .
       dockerfile: Dockerfile3
+    image: flask_service:latest
     ports:
-      - "5000:5000"
+      - "4000:4000"
+    environment:
+      OPENAI_API_KEY: $OPENAI_API_KEY
+      PINECONE_KEY: $PINECONE_KEY
+      PINECONE_INDEX_NAME: $PINECONE_INDEX_NAME
