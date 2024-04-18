@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-sdk-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-sdk-service
+  template:
+    metadata:
+      labels:
+        app: cloud-sdk-service
+    spec:
+      containers:
+      - name: cloud-sdk-service
+        image: gcr.io/restaurant-supplier-networks/cloud-sdk-service:latest
+        ports:
+        - containerPort: 8080

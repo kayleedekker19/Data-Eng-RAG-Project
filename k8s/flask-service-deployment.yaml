@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-service
+  template:
+    metadata:
+      labels:
+        app: flask-service
+    spec:
+      containers:
+      - name: flask-service
+        image: gcr.io/restaurant-supplier-networks/flask-service:latest
+        ports:
+        - containerPort: 4000
