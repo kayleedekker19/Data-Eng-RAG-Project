@@ -91,6 +91,8 @@ jobs:
         tar xzf kustomize.tar.gz
         chmod u+x kustomize
         sudo mv kustomize /usr/local/bin/
+        which kustomize
+        kustomize version
 
     - name: Deploy
       run: |-
