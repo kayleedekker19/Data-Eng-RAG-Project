@@ -12,7 +12,7 @@ COPY 8_rag_api_end_point_flask/ /app/
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements_4.txt
 
-# Make port 5000 available to the world outside this container
+# Make port 4000 available to the world outside this container
 EXPOSE 4000
 
 # Run your Flask application

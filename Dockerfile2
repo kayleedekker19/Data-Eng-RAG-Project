@@ -1,8 +1,17 @@
 # Use an official Python runtime as a parent image
 FROM python:3.8
 
+# Arguments that can be passed at build time
+ARG GCP_SA_KEY
+
+# The environment variable for Google Cloud authentication
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/service-account.json
+
 # Set the working directory in the container
 WORKDIR /usr/src/app
+
+# Decode the service account key and save it to a file
+RUN echo "$GCP_SA_KEY" | base64 --decode > ${GOOGLE_APPLICATION_CREDENTIALS}
 
 # Copy the current directory contents into the container at /usr/src/app
 COPY requirements_3.txt .

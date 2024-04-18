@@ -4,8 +4,17 @@
 # Use Google Cloud SDK official Docker image as a parent image
 FROM gcr.io/google.com/cloudsdktool/cloud-sdk:latest
 
+# Arguments that can be passed at build time
+ARG GCP_SA_KEY
+
+# The environment variable for Google Cloud authentication
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/service-account.json
+
 # Set the working directory in the container
 WORKDIR /app
+
+# Decode the service account key and save it to a file
+RUN echo "$GCP_SA_KEY" | base64 --decode > ${GOOGLE_APPLICATION_CREDENTIALS}
 
 # Copy the current directory contents into the container at /app
 COPY . /app
