@@ -53,6 +53,9 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
 
+    - name: Echo Docker Tag
+      run: echo "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+
     # Build the Docker image
     - name: Build
       run: |-
