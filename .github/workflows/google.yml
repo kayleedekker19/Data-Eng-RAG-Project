@@ -78,7 +78,8 @@ jobs:
 
       # Deploy the Docker image to the GKE cluster
     - name: Deploy
-      run: |-
+      run: |
+        cd deploy/
         # replacing the image name in the k8s template
         ./kustomize edit set image $REPOSITORY=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
         ./kustomize build . | kubectl apply -f -
