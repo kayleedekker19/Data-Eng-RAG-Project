@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: "us-central1-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+        image: flask-app  # placeholder to match the image name in kustomization.yaml
         ports:
         - containerPort: 4000
         env:
