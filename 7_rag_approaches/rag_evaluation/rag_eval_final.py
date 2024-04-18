@@ -1,3 +1,5 @@
+# Evaluate all three RAG approaches with ground truths
+
 import json
 import re
 import pandas as pd
