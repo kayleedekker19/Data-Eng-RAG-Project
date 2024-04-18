@@ -4,11 +4,11 @@ FROM python:3.8
 # Arguments that can be passed at build time
 ARG GCP_SA_KEY
 
-# The environment variable for Google Cloud authentication
-ENV GOOGLE_APPLICATION_CREDENTIALS=/app/service-account.json
-
 # Set the working directory in the container
 WORKDIR /usr/src/app
+
+# The environment variable for Google Cloud authentication, adjusted to the new WORKDIR
+ENV GOOGLE_APPLICATION_CREDENTIALS=/usr/src/app/service-account.json
 
 # Decode the service account key and save it to a file
 RUN echo "$GCP_SA_KEY" | base64 --decode > ${GOOGLE_APPLICATION_CREDENTIALS}
