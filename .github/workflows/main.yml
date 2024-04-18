@@ -39,6 +39,8 @@ jobs:
         NEO_USERNAME: ${{ secrets.NEO_USERNAME }}
         NEO_PASSWORD: ${{ secrets.NEO_PASSWORD }}
         GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Push the Docker images
       run: docker-compose -f docker-compose.yml push
