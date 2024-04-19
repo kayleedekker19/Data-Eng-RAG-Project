@@ -6,4 +6,4 @@ resources:
 images:
   - name: flask-app
     newName: us-central1-docker.pkg.dev/${PROJECT_ID}/supply-chain-services/rag-image
-    newTag: latest
+    newTag: ${GITHUB_SHA}   #latest
