@@ -96,6 +96,14 @@ jobs:
       run: |
         which kustomize
         kustomize version
+        
+        # This is where you prepare the kustomization with proper variables
+    - name: Prepare Kustomization
+      run: |
+        envsubst < deploy/kustomization.yml.template > deploy/kustomization.yml
+      env:
+        PROJECT_ID: ${{ secrets.PROJECT_ID }}
+        GITHUB_SHA: ${{ github.sha }}
 
     - name: List files in Deploy directory
       run: |
