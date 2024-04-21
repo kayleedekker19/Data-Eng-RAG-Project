@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Assuming your Flask app and requirements_overall.txt are inside 8_rag_api_end_point_flask
 # Copy the specific directory contents into the container at /app
-COPY requirements_4.txt .
+COPY requirements_3.txt .
 COPY 8_rag_api_end_point_flask/ /app/
 
 # Install any needed packages specified in requirements_overall.txt
