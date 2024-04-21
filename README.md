@@ -66,4 +66,4 @@ Each component of the project is containerized using Docker, managed by specific
 - **Shell Scripts**: `run_pipeline.sh` and `submit_or_scripts.sh` for automating pipeline and script submission processes.
 - **Dockerfiles**: Organized to support different segments of the workflow, ensuring replicability and consistency.
 - **CI/CD Integration**: `google.yml` in `.github/workflows` directory, vital for automating builds and deployments via GitHub Actions, connected to Google Artifact Registry and Kubernetes Engine.
-- **Failed Attempts and Learning**: `cloud_build.yaml` included to showcase attempted builds that provide learning opportunities.
+- **Failed Attempts and Learning**: `cloud_build.yaml` and `docker-compose.yml` included to showcase attempted builds that provide learning opportunities.
