@@ -1,4 +1,6 @@
-# Evaluate all three RAG approaches with ground truths
+"""
+Evaluate all three RAG approaches with ground truths using RAGAs
+"""
 
 import json
 import re

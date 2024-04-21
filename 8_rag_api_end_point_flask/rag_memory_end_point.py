@@ -1,3 +1,9 @@
+"""
+This script is used to create an endpoint to route requests.
+It serves the final RAG approach - the memory chatbot - to a flask API.
+The templates folder formats the user web interface.
+"""
+
 from flask import Flask, request, render_template
 import os
 from dotenv import load_dotenv

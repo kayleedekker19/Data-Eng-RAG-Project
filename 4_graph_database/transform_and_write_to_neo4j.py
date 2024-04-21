@@ -1,5 +1,8 @@
-# This function takes the data after NER and RE is completed
-# And it writes the data into the neo4j graph database
+"""
+This function takes the data after NER and RE is completed.
+And it writes the data into the neo4j graph database.
+There are a number of careful and complex data transformations performed.
+"""
 
 # Import libraries
 import json

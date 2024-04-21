@@ -1,3 +1,8 @@
+"""
+Finally, this is the third RAG method. It incorporates LangChain's memory features to mimic a ChatBot that allows users to interact with the LLM.
+It remembers previous questions and answers in the conversation.
+"""
+
 # Import libraries
 import os
 from dotenv import load_dotenv

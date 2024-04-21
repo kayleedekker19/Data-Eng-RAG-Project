@@ -1,3 +1,7 @@
+"""
+This script is responsible for inserting data into a vector database - Pinecone
+"""
+
 from pinecone import Pinecone
 import time
 import os

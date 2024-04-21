@@ -1,3 +1,7 @@
+"""
+Combines all three RAGAs evaluation outputs into one csv file
+"""
+
 # Import libaries
 import pandas as pd
 import os

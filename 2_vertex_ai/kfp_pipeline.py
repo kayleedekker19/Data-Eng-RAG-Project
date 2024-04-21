@@ -1,4 +1,7 @@
-# Vertex AI and ML Pipelines
+"""
+This script is responsible for Named Entity Recognition and Relations Extraction on the news articles.
+It uses VertexAI and KFP pipelines to execute the task. There are two components as part of the kfp pipeline.
+"""
 
 # Import necessary libraries
 import subprocess

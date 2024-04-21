@@ -20,8 +20,8 @@ COPY 5_vector_database/get_relevant_clusters.py vector_database/
 COPY 5_vector_database/embeddings_to_pinecone.py vector_database/
 COPY submit_all_scripts.sh .
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements_3.txt
+# Install any needed packages specified in requirements_overall.txt
+RUN pip install --no-cache-dir -r requirements_2.txt
 
 # Make port 80 available to the world outside this container
 EXPOSE 80

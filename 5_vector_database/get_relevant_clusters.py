@@ -1,3 +1,9 @@
+"""
+Here we extract clusters from the graph database with 4 or more nodes.
+Then, concise statements are generated from it and saved to GCS.
+These textual representations of the clusters are what will be inserted into Pinecone.
+"""
+
 from neo4j import GraphDatabase
 import os
 from dotenv import load_dotenv

@@ -1,3 +1,7 @@
+"""
+This script extracts the names of Michelin Restaurants using scraping as the data retrieval method.
+"""
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service

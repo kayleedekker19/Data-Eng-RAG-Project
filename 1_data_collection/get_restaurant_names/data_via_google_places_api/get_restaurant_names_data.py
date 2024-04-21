@@ -1,3 +1,8 @@
+"""
+This script was also not used in the final project version.
+It processes the restaurant names retrieved from Google Places.
+"""
+
 import os
 import io
 import csv

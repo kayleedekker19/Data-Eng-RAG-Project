@@ -1,3 +1,8 @@
+"""
+This script was not used in the final project version. Here restaurant names are retrieved from Google Places.
+I switched strategy and decided getting restaurant names from the Michelin guide increases my chances of being able to identify buyer-supplier relationships in news articles.
+"""
+
 import time
 import os
 import requests

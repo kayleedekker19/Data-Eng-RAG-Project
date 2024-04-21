@@ -1,3 +1,7 @@
+"""
+This is the first RAG method. It is the most simple and flexible method and employs LangChain's PromptTemplate feature.
+It sets up a pipeline to run the RAG. Guardrails are defined in the primer to prevent hallucinations.
+"""
 # Rag pipeline
 
 # Import libraries

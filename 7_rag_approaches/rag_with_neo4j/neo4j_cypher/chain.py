@@ -1,3 +1,11 @@
+"""
+This script is designed to set up the "ground truths" that are necessary for the RAGAs Evaluation.
+It performs the following steps
+1. Uses the LLM to create a cypher query based on a user input
+2. Retrieves the answers directly from the graph database
+3. Uses the LLM to use these answers and reply to the inital query in a human-response way.
+"""
+
 # Step 1: Imports
 import json
 import os

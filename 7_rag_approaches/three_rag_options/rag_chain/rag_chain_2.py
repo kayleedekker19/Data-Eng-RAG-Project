@@ -1,3 +1,8 @@
+"""
+This script is the second RAG method. It uses prompt chaining and LangChains LLMChain feature.
+This creates a sequential flow to the LLM calls, aiming to increase the accuracy and completeness of the answers.
+"""
+
 # Import libraries
 import os
 from dotenv import load_dotenv

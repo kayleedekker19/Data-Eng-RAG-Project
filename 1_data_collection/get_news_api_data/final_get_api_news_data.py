@@ -1,3 +1,7 @@
+"""
+This script calls a news api to get news articles based on the names of entities - for example suppliers
+"""
+
 import csv
 import os
 import requests

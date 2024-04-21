@@ -1,4 +1,5 @@
-# This workflow will build a docker container, publish it to Google Container Registry, and deploy it to GKE when there is a push to the "main" branch.
+# This workflow will build a docker container, publish it to Google Container Registry,
+# and deploy it to GKE when there is a push to the "main" branch.
 
 name: Build and Deploy to GKE
 
@@ -69,22 +70,6 @@ jobs:
       run: |-
         docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
 
-#    # Set up kustomize
-#    - name: Set up Kustomize
-#      run: |-
-#        curl -L -o kustomize_v5.4.1_linux_amd64.tar.gz https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.1/kustomize_v5.4.1_linux_amd64.tar.gz
-#        tar xzf kustomize_v5.4.1_linux_amd64.tar.gz
-#        chmod u+x ./kustomize
-#
-#      # Deploy the Docker image to the GKE cluster
-#    - name: Deploy
-#      run: |
-#        cd deploy/
-#        ./kustomize edit set image $REPOSITORY=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
-#        ./kustomize build . | kubectl apply -f -
-#        kubectl rollout status deployment/$DEPLOYMENT_NAME
-#        kubectl get services -o wide
-
     - name: Set up Kustomize
       run: |-
         curl -L -o kustomize.tar.gz https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.1/kustomize_v5.4.1_linux_amd64.tar.gz
@@ -118,11 +103,4 @@ jobs:
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
 
-#    - name: Deploy
-#      run: |-
-#        cd deploy/
-#        kustomize edit set image $REPOSITORY=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
-#        kustomize build . | kubectl apply -f -
-#        kubectl rollout status deployment/$DEPLOYMENT_NAME
-#        kubectl get services -o wide
     

@@ -1,4 +1,7 @@
-# This function creates a pinecone index
+"""
+Here we create a pinecone index
+"""
+
 from pinecone import Pinecone, ServerlessSpec
 import os
 from dotenv import load_dotenv

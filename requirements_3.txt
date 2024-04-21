@@ -1,6 +1,6 @@
+Flask==3.0.3
 python-dotenv==1.0.1
-neo4j==5.18.0
-pinecone-client==3.2.1
 langchain-openai==0.1.1
-openai==1.14.3
-google-cloud-storage==2.16.0
+pinecone-client==3.2.1
+langchain==0.1.13
+langchain-pinecone==0.0.3
