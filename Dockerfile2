@@ -14,7 +14,7 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=/usr/src/app/service-account.json
 RUN echo "$GCP_SA_KEY" | base64 --decode > ${GOOGLE_APPLICATION_CREDENTIALS}
 
 # Copy the current directory contents into the container at /usr/src/app
-COPY requirements_3.txt .
+COPY requirements_2.txt .
 COPY 4_graph_database/transform_and_write_to_neo4j.py graph_database/
 COPY 5_vector_database/get_relevant_clusters.py vector_database/
 COPY 5_vector_database/embeddings_to_pinecone.py vector_database/
